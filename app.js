@@ -23,7 +23,7 @@ app.get('/home', function(req, res){
 });
 
 app.use(express.static(__dirname + '/static'));
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(function(req, res, next){
 //     var err = new Error('Batman said you are wrong');
@@ -31,7 +31,8 @@ app.use(express.static(__dirname + '/static'));
 //     next(err);
 // });
 
-server.listen(3000);
+server.listen(3000)
+
 server.on('error', onError);
 
 function onError(error) {
