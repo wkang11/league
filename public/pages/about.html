@@ -2,4 +2,11 @@
         <h1>About Page</h1>
 
         <p>{{message}}</p>
+        <div class="container">
+        <div class="jumbotron">
+            <div ng-show="doesSummonerExist" class="row">
+                <img class = "summoner-icon-image" ng-src="http://ddragon.leagueoflegends.com/cdn/6.17.1/img/profileicon/{{summoner.iconId}}.png">
+            </div>
+        </div>
     </div>
+</div>
