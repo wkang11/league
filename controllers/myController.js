@@ -2,7 +2,7 @@
     'use strict';
     var moduleName = "myController.module";
     angular.module(moduleName, []);
-    modules.push(moduleName);
+ 
     
     function MyController($scope){
         'ngInject';
