@@ -15,6 +15,6 @@
                 controller: 'contactController'
             });
     };
-    var app = angular.module('myApp', ['ngRoute','myController.module','aboutController.module']);
+    var app = angular.module('myApp', ['ngRoute','myController.module','aboutController.module','contactController.module']);
     app.config(['$routeProvider', routing]);
 })();
