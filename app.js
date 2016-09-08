@@ -4,7 +4,12 @@ var http = require('http');
 var path = require('path');
 
 var server = http.createServer(app);
+var summonerInfo = require('./routes.js');
 
+app.use(express.static(__dirname + '/static'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('//api', summonerInfo);
 
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname + '/index.html'));
@@ -22,14 +27,9 @@ app.get('/home', function(req, res){
     res.sendFile(path.join(__dirname + '/pages/home.html'));
 });
 
-app.use(express.static(__dirname + '/static'));
-app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(function(req, res, next){
-//     var err = new Error('Batman said you are wrong');
-//     err.status = 404;
-//     next(err);
-// });
+
+
 
 server.listen(3000)
 

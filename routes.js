@@ -6,7 +6,8 @@ var router = express.Router();
 var apiService = require('./services/apiService');
 
 /* GET home page. */
-router.get('/api/summoner/basic/:name', function(req, res) {
+router.get('/summoner/basic/:name', function(req, res) {
+    console.log(req);
     var name = req.params.name;
     apiService.findBasicByName(name, function(err,res){
         if(err){
