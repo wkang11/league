@@ -1,15 +1,36 @@
 'use strict';
-var request = require('superagent-cache')();
+var http = require("http");
 var APIKey = "40876847-d0d6-43d0-9718-16ac33582f61";
 
-function findBasicByName(name, callback){
-    var url = "https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/" + name + "/entry?api_key=" + APIKey
+function findBasicByName(req, res) {
+    var name = req.params.name;
+    console.log(name+'log please show up for param name');
+    var url = "/api/lol/na/v2.5/league/by-summoner/" + name + "/entry?api_key=" + APIKey
 
-    request.get(url).end(function(data){
-        callback(null,data);
+    var options = {
+        hostname: 'https://na.api.pvp.net',
+        path: url,
+        method: 'GET'
+    }
+
+    var request = http.request(options, function (response) {
+        var body = "";
+        response.on('data', function (data) {
+            body += data;
+        });
+        response.on('end', function () {
+            res.send(JSON.parse(body));
+        });
     });
+
+    request.on('error', function (e) {
+        console.log('Problem with request: ' + e.message);
+    });
+    request.end();
 }
 
-module.exports={
+
+
+module.exports = {
     findBasicByName: findBasicByName
 }

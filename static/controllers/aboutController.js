@@ -3,13 +3,13 @@
     var moduleName = 'aboutController.module';
     angular.module(moduleName, []);
 
-    function AboutController($scope, $window, apiService) {
+    function AboutController($scope, $window) {
         'ngInject';
         $scope.message = 'Let me start from beginning for about page';
         $scope.doesSummonerExist = true;
-        this.apiService = apiService;
+        // this.apiService = apiService;
         this.$window = $window;
-        this.getIcon();
+        // this.getIcon();
     }
 
     AboutController.prototype = {

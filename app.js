@@ -9,7 +9,7 @@ var summonerInfo = require('./routes.js');
 app.use(express.static(__dirname + '/static'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('//api', summonerInfo);
+ app.use('/api', summonerInfo);
 
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname + '/index.html'));
@@ -27,9 +27,7 @@ app.get('/home', function(req, res){
     res.sendFile(path.join(__dirname + '/pages/home.html'));
 });
 
-
-
-
+summonerInfo(app);
 
 server.listen(3000)
 
