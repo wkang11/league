@@ -1,5 +1,5 @@
 'use strict';
-var http = require("http");
+var https = require("https");
 var APIKey = "40876847-d0d6-43d0-9718-16ac33582f61";
 
 function findInfoByID(req, res) {
@@ -13,7 +13,7 @@ function findInfoByID(req, res) {
         method: 'GET'
     }
 
-    var request = http.request(options, function (response) {
+    var request = https.request(options, function (response) {
         var body = "";
         response.on('data', function (data) {
             body += data;
@@ -33,14 +33,15 @@ function findInfoByID(req, res) {
 function findBasicByName(req, res) {
     var name = req.params.name;
     console.log(name+'log please show up for param name');
-    var url = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + name + "?api_key=" + APIKey
+    var url = "/api/lol/na/v1.4/summoner/by-name/" + name + "?api_key=" + APIKey
 
     var options = {
-        url: url,
+        host: 'na.api.pvp.net',
+        path: url,
         method: 'GET'
     }
 
-    var request = http.request(options, function (response) {
+    var request = https.request(options, function (response) {
         var body = "";
         response.on('data', function (data) {
             body += data;
