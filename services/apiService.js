@@ -81,10 +81,35 @@ function findBasicByName(req, res) {
     request.end();
 }
 
+function getAllChampions(req, res){
+    var url = "/api/lol/static-data/na/v1.2/champion?api_key=" + APIKey;
+    var options = {
+        host: 'na.api.pvp.net',
+        path: url,
+        method: 'GET'
+    };
+
+    var request = https.request(options, function(response){
+        var body = "";
+        response.on('data', function (data) {
+            body += data;
+        });
+        response.on('end', function () {
+            res.send(JSON.parse(body));
+        });
+    });
+
+    request.on('error', function (e) {
+        console.log('Problem with request: ' + e.message);
+    });
+    request.end();
+}
+
 
 
 module.exports = {
     findBasicByName: findBasicByName,
     findInfoByID: findInfoByID,
-    getVersionNumber: getVersionNumber
+    getVersionNumber: getVersionNumber,
+    getAllChampions: getAllChampions,
 }

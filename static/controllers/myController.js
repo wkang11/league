@@ -5,16 +5,42 @@
     angular.module(moduleName, ["sharedProperties.module"]);
 
 
-    function MyController($scope, sharedProperties) {
+    function MyController($scope, $http, $location, sharedProperties) {
         'ngInject';
+        this.$location = $location;
         $scope.message = 'Let me start from beginning ';
-       
-        sharedProperties.getVersion(function (err, versionData) {
-            $scope.version = versionData.data[0];            
-        });
-        
+        this.$http = $http;
+        this.$scope = $scope;
+        this.champions ={};
+        this.sharedProperties = sharedProperties;
+        this.getCurrenGameVersion();
+        this.getAllChampionIcons();
 
     }
+    MyController.prototype = {
+
+        getCurrenGameVersion: function () {
+            this.sharedProperties.getVersion(function (err, versionData) {
+                this.$scope.version = versionData.data[0];
+            }.bind(this))
+        },
+
+        getAllChampionIcons: function () {
+            this.$http({
+                method: 'GET',
+                url: "/api/champions"
+            }).then(function succesCallback(data) {
+                console.log(data.data.data);
+                
+                
+                this.champions = data.data.data;
+            }.bind(this))
+            
+        },
+
+    }
+
+
 
     angular.module(moduleName).controller('myController', MyController);
 })();

@@ -15,6 +15,7 @@
             }, function(err){callback(err)});
         }
 
+        
         return {
             getVersion: getVersion
         };

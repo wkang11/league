@@ -2,5 +2,7 @@
     <h1>Home Page</h1>
     <p>{{message}}</p>
     <p>Current League of Legends Game Version {{version}}</p>
-    
+      <div class="row" ng-repeat="champion in champions">
+        <img class = "summoner-icon-image" ng-src="http://ddragon.leagueoflegends.com/cdn/{{version}}/img/champion/{{champion.key}}.png">
+      </div>
 </div>
