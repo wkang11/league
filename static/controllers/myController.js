@@ -11,7 +11,7 @@
         $scope.message = 'Let me start from beginning ';
         this.$http = $http;
         this.$scope = $scope;
-        this.champions ={};
+       
         this.sharedProperties = sharedProperties;
         this.getCurrenGameVersion();
         this.getAllChampionIcons();
@@ -32,8 +32,8 @@
             }).then(function succesCallback(data) {
                 console.log(data.data.data);
                 
+                this.$scope.champions = Object.keys(data.data.data);
                 
-                this.champions = data.data.data;
             }.bind(this))
             
         },
