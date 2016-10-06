@@ -3,20 +3,26 @@
     var moduleName = 'aboutController.module';
     angular.module(moduleName, ["sharedProperties.module"]);
 
-    function AboutController($scope, $http, $location,sharedProperties) {
+    function AboutController($scope, $http, $location, sharedProperties) {
         'ngInject';
-        this.$location=$location;
-        this.$scope = $scope;        
+        this.$location = $location;
+        this.$scope = $scope;
         this.$http = $http;
         this.$scope.message = 'Let me start from beginning for about page';
         this.$scope.doesSummonerExist = true;
         this.sharedProperties = sharedProperties;
-        
+
         this.getBasicInfo();
         this.getCurrenGameVersion();
     }
 
     AboutController.prototype = {
+        getCurrenGameVersion: function () {
+            this.sharedProperties.getVersion(function (err, versionData) {
+                this.$scope.currentGameVersion = versionData.data[0];
+            }.bind(this))
+        },
+
         getBasicInfo: function () {
             var pathArray = this.$location.path().split('/:');
             var userInGameName = pathArray[1];
@@ -36,16 +42,13 @@
                 }
             }.bind(this))
 
-        },
+        },        
 
-        getCurrenGameVersion: function(){
-            this.sharedProperties.getVersion(function(err, versionData){
-                this.$scope.currentGameVersion = versionData.data[0];
-            }.bind(this))
-        },
-
-        getSummonerData:function(){
-            
+        getSummonerData: function () {
+            this.$http({method: "GET", url: "/api/summoner/rank/"+summonerID}
+                .then(function succesCallback(data){
+                    console.log(data);
+                }))
         }
     }
 
