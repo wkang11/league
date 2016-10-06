@@ -25,8 +25,8 @@
         },
 
         getBasicInfo: function (callback) {
-            var pathArray = this.$location.path().split('/:');
-            var userInGameName = pathArray[1];
+            // var pathArray = this.$location.path().split('/:');
+            var userInGameName = this.$scope.summoner.name;
             this.$http({
                 method: 'GET',
                 url: "/api/summoner/basic/" + userInGameName
