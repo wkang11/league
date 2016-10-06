@@ -12,8 +12,9 @@
         this.$scope.doesSummonerExist = true;
         this.sharedProperties = sharedProperties;
 
-        this.getBasicInfo();
         this.getCurrenGameVersion();
+        this.getBasicInfo();
+        this.$scope.getSummonerData = this.getSummonerData.bind(this);
     }
 
     AboutController.prototype = {
@@ -45,11 +46,11 @@
         },        
 
         getSummonerData: function () {
-            this.$http({method: "GET", url: "/api/summoner/rank/"+summonerID}
+            this.$http({method: "GET", url: "/api/summoner/basic/"+this.$scope.summoner.id})
                 .then(function succesCallback(data){
                     console.log(data);
-                }))
-        }
+                }.bind(this))
+        },        
     }
 
     angular.module(moduleName).controller('aboutController', AboutController);

@@ -10,7 +10,7 @@
                 method: 'GET',
                 url: "/api/version"
             }).then(function (data) {
-                console.log(data.data[0]);
+                
                 callback(null, data);
             }, function(err){callback(err)});
         }
