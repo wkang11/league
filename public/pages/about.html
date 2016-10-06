@@ -12,7 +12,20 @@
         <div class="jumbotron">
             <div ng-show="doesSummonerExist" class="row">
                 <img class = "summoner-icon-image" ng-if='summoner.iconId' ng-src="http://ddragon.leagueoflegends.com/cdn/{{currentGameVersion}}/img/profileicon/{{summoner.iconId}}.png">
+            <p>Player in {{summoner.areaName}}</p>
+            <p>Played mostly in {{summoner.queue}}</p>
+            <p>Player Rank in {{summoner.rank}} {{summoner.division}}</p>
+            <p>Player point in {{summoner.rankPoint}}</p> 
             </div>
         </div>
+
+  
     </div>
 </div>
+
+
+ "areaName": data.data[ID][0].name,
+                        "queue": data.data[ID][0].queue,
+                        "rank": data.data[ID][0].tier,
+                        "division": data.data[ID][0].entries[0].division,
+                        "rankPoint": data.data[ID][0].leaguePoints

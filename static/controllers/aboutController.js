@@ -13,7 +13,7 @@
         this.sharedProperties = sharedProperties;
 
         this.getCurrenGameVersion();
-        this.getBasicInfo();
+
         this.$scope.getSummonerData = this.getSummonerData.bind(this);
     }
 
@@ -24,7 +24,7 @@
             }.bind(this))
         },
 
-        getBasicInfo: function () {
+        getBasicInfo: function (callback) {
             var pathArray = this.$location.path().split('/:');
             var userInGameName = pathArray[1];
             this.$http({
@@ -41,16 +41,27 @@
                         "summonerLevel": data.data[key].summonerLevel
                     };
                 }
+                callback();
             }.bind(this))
 
-        },        
+        },
 
         getSummonerData: function () {
-            this.$http({method: "GET", url: "/api/summoner/basic/"+this.$scope.summoner.id})
-                .then(function succesCallback(data){
-                    console.log(data);
-                }.bind(this))
-        },        
+            this.getBasicInfo(function () {
+                var ID = this.$scope.summoner.id;
+                this.$http({ method: "GET", url: "/api/summoner/info/" + ID })
+                    .then(function succesCallback(data) {
+                        console.log(data);
+                        this.$scope.summoner.areaName = data.data[ID][0].name;
+                        this.$scope.summoner.queue = data.data[ID][0].queue;
+                        this.$scope.summoner.rank = data.data[ID][0].tier;
+                        this.$scope.summoner.division = data.data[ID][0].entries[0].division;                        
+                        this.$scope.summoner.rankPoint = data.data[ID][0].entries[0].leaguePoints; 
+                        console.log(this.$scope.summoner);
+                    }.bind(this))
+            }.bind(this));
+
+        },
     }
 
     angular.module(moduleName).controller('aboutController', AboutController);
