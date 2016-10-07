@@ -8,7 +8,7 @@
     function MyController($scope, $http, $location, sharedProperties) {
         'ngInject';
         this.$location = $location;
-        $scope.message = 'Let me start from beginning ';
+        $scope.message = 'All image is loadd from ddragon.leagueoflegends.com';
         this.$http = $http;
         this.$scope = $scope;
        

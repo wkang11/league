@@ -8,7 +8,7 @@
         this.$location = $location;
         this.$scope = $scope;
         this.$http = $http;
-        this.$scope.message = 'Let me start from beginning for about page';
+        this.$scope.message = 'Search Summoner Information Below';
         this.$scope.doesSummonerExist = true;
         this.sharedProperties = sharedProperties;
 

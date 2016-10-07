@@ -15,8 +15,13 @@
                 <img class = "summoner-icon-image" ng-if='summoner.iconId' ng-src="http://ddragon.leagueoflegends.com/cdn/{{currentGameVersion}}/img/profileicon/{{summoner.iconId}}.png">
             <p ng-if="summoner.areaName">Battled in {{summoner.areaName}}</p>
             <p ng-if="summoner.queue">Good at {{summoner.queue}}</p>
-            <p ng-if="summoner.rank"> Rank in {{summoner.rank}} {{summoner.division}}</p>
-            <p ng-if="summoner.rankPoint">Points: {{summoner.rankPoint}}</p> 
+            <div ng-if="summoner.rank">
+                <p> Rank in {{summoner.rank}} {{summoner.division}}</p>
+                <img id="rankIcon" src='/images/{{summoner.rank}}.jpg'/>            
+            </div>
+            <div>
+                <p ng-if="summoner.rankPoint">Points: {{summoner.rankPoint}}</p> 
+            </div>
             </div>
         </div>
 
