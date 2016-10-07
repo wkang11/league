@@ -6,7 +6,7 @@
                 templateUrl: 'pages/home.html',
                 controller: 'myController'
             })
-            .when('/api/summoner/basic/:name', {
+            .when('/about', {
                 templateUrl: 'pages/about.html',
                 controller: 'aboutController'
             })
