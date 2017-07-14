@@ -30,7 +30,7 @@
                 method: 'GET',
                 url: "/api/champions"
             }).then(function succesCallback(data) {
-                console.log(data.data.data);
+                console.log(data);
                 
                 this.$scope.champions = Object.keys(data.data.data);
                 

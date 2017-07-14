@@ -1,6 +1,6 @@
 'use strict';
 var https = require("https");
-var APIKey = "RGAPI-4c9f8d8b-54f1-4ce8-9dcd-b8e1ad541b32";
+var APIKey = "RGAPI-370104ba-7ae9-43f5-aee1-5b6fd2c7dd0f";
 
 function getVersionNumber(req, res) {
     var url = "/api/lol/static-data/na/v1.2/versions?api_key=" + APIKey;
